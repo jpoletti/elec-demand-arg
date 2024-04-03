@@ -24,9 +24,11 @@ From a microeconomics perspective it is possible to model the demand of electric
 From the consumer side the first condition is that $\partial{p_e}/\partial{\hat{q}_{t}} <0$ (that is, that increases in price reduce demand) and the second condition, assuming that electricity is a normal good (or rather, a normal service), is that $\partial{w}/\partial{\hat{q}_{t}} >0$ (increasing income increases demand).
 From the producer side the conditions to be met are that $\partial{p_e}/\partial{\hat{q}_{t}} <0$ and $\partial{a}/\partial{\hat{q}_{t}} > 0$ (more economic activity lead to more electricity demand).
 In the end we have 3 conditions and all of them are met, because:
+```math
 $$\partial{p_e}/\partial{\hat{q}_{t}} = \frac{\hat{\beta}_3}{p_e} = \frac{-332004}{p_e} <0 ; \space p_e>0$$
 $$\partial{w}/\partial{\hat{q}_{t}} = \hat{\beta}_4 = 320936 >0$$
 $$\partial{a}/\partial{\hat{q}_{t}} = \hat{\beta}_5 = 15812 > 0$$
+```
 Thus the model is theoretically valid.
 #### Internal Validity
 
