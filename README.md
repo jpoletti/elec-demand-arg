@@ -26,7 +26,11 @@ From the producer side the conditions to be met are that $\partial{p_e}/\partial
 In the end we have 3 conditions and all of them are met, because:
 ```math
 $$\partial{p_e}/\partial{\hat{q}_{t}} = \frac{\hat{\beta}_3}{p_e} = \frac{-332004}{p_e} <0 ; \space p_e>0$$
+```
+```math
 $$\partial{w}/\partial{\hat{q}_{t}} = \hat{\beta}_4 = 320936 >0$$
+```
+```math
 $$\partial{a}/\partial{\hat{q}_{t}} = \hat{\beta}_5 = 15812 > 0$$
 ```
 Thus the model is theoretically valid.
