@@ -12,8 +12,10 @@ Buenos Aires](https://www.estadisticaciudad.gob.ar/eyc/?p=27702), a goverment en
 * Time ($t$): This variable was added to take into consideration other trends in electricity consumption that are not included in the other variables, such as: increasing efficiency in home appliances, population increase, adoption of electro-intensive production processes, etc. This is a discrete variable so that the first month of the sample (January-2011) $t=1$, in the second month $t=2$ and so on.
 ## Electricity Demand Estimation
 ### Regression Equation
-In this model, the relationship between the electricity demand, measured in Kilowatts, and the variables is as following:      
-$\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t$
+In this model, the relationship between the electricity demand, measured in Kilowatts, and the variables is as following:
+```math
+\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t
+```
 Where $\hat{q}_t$ is the electricity demand and $\hat{u}_t$ is the sample estimation error, both during the period $t$. Replacing the betas for their values the equation is:
 $$\hat{q}_{t} = 15274960 + 38758 \space t_{mp}^2 -1426205 \space t_{mp} -332004 \space ln(p_e) + 320936 \space w + 15812 \space a + 22256 \space t + \hat{u}_t$$
 ### Model Validity
