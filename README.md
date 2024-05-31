@@ -42,6 +42,5 @@ This aspect was analyzed using Ramsey's RESET test, which consists of elaboratin
 Measurement Errors in the Variables. In principle, no measurement problems are observed in the variables used. However, there are two elements that could possibly threaten the internal validity of the model.
 ##### Measurement Errors
 There are 2 potential sources of measurement errors:
-• In the period 2011-2016, the average seasonal price and the wage index are adjusted using the CPI produce by the province of San Luis, but this index is not necessarily representative of the price variation at the national level.
-
-• The temperature data used is only representative of the city of Buenos Aires (and, possibly, the Greater Buenos Aires Metropolitan Area). Although a large percentage of the country's electricity demand is concentrated in this geographical region, the correct procedure would have been to use a temperature index for the whole country, but this information when making this model.
+* In the period 2011-2016, the average seasonal price and the wage index are adjusted using the CPI produce by the province of San Luis, but this index is not necessarily representative of the price variation at the national level.
+* The temperature data used is only representative of the city of Buenos Aires (and, possibly, the Greater Buenos Aires Metropolitan Area). Although a large percentage of the country's electricity demand is concentrated in this geographical region, the correct procedure would have been to use a temperature index for the whole country, but this information when making this model.
