@@ -40,7 +40,51 @@ As mentioned previously, from a theoretical perspective the relevant variables r
 ##### Functional Form Misspecification
 This aspect was analyzed using Ramsey's RESET test, which consists of elaborating a regression that includes the first k (in this case, k = 3) powers of the independent variables and performing an F test on them to evaluate whether they are statistically significant. In the case of the presented model, the p-value of the test is 0.08999, which rejects the alternative hypothesis that the regression is misspecified. In addition, it is verified that all the variables included in the model are statistically significant at 99.99%.
 Measurement Errors in the Variables. In principle, no measurement problems are observed in the variables used. However, there are two elements that could possibly threaten the internal validity of the model.
-##### Measurement Errors
+##### Errors-in-Variable Bias
 There are 2 potential sources of measurement errors:
 * In the period 2011-2016, the average seasonal price and the wage index are adjusted using the CPI produce by the province of San Luis, but this index is not necessarily representative of the price variation at the national level.
 * The temperature data used is only representative of the city of Buenos Aires (and, possibly, the Greater Buenos Aires Metropolitan Area). Although a large percentage of the country's electricity demand is concentrated in this geographical region, the correct procedure would have been to use a temperature index for the whole country, but this information when making this model.
+##### Sample Selection Bias
+The reason why the dataset covers the 2011-2022 timeframe is that the average seasonal price data was available during that period. Because the sampling is based on the availability of data of a regressor this shouldn't cause any bias.   
+Even though there is no reason to state that the selected sample is not representative, the fact that not all of the necessary data are available for previous periods does not allow us to state that the selected sample is representative for them.   
+It is also possible that in the future there will be structural changes in electricity demand (for example, an increase of the amount of electric vehicles) that will make the estimator q̂t inconsistent, unbiased or a poor predictor of electricity demand.
+##### Simultaneous Causality Bias
+* The temperature during a period is not determined by the electricity demand during that same period.
+* The average seasonal price is determined directly or indirectly by the government's tariff policy, not by the demand for electricity.
+* Wages are determined by factors such as labor productivity or the real exchange rate, but they are not related to electricity demand.
+* The demand for electricity as a production input  is determined by economic activity, but there is no such relationship in the opposite direction.
+* The passage of time is not determined by electricity demand in Argentina.
+##### Inconsistency of OLS Standard Errors
+###### Heteroskedasticity
+To test for heteroskedasticity the Breusch-Pagan test was performed. The p-value of the test was 0.6206, which with a significance level of 0.05 rejects the null hypothesis of the test and leads to the conclusion that the residuals of the model have constant variance.
+###### Serial Correlation
+To test for this aspect the Durbin-Watson test was used. In this case the d statistic was 1.923 which rejects the hypothesis that there are serial correlation problems with a significance level of 0.05.
+#### External Validity
+Given the regulatory differences between the different electricity markets in their respective countries, the existing differences in terms of the adoption of electrical appliances and climate control systems by consumers and the greater or lesser preponderance of industries with high electricity consumption, it is unlikely that the model presented in this article can be used in countries other than Argentina.
+### Model Results
+This regression has an R² = 0.8572 and. It can be observed that the MAPE is 3.15%, where the largest underestimation is -10.70% and the largest overestimation is 12.04%.
+### Economic Properties of the Electricity Demand
+Given that the presented model has been shown to meet the necessary conditions to be valid from a theoretical and econometric point of view, it is possible to infer some interesting properties of electricity demand in the stabilized market, including:
+
+1. Optimal Temperature for Minimum Electricity Demand:
+
+It is possible to find the value of t* that minimizes electricity demand, which is approximately 18.4 °C.
+This suggests that during periods when the average temperature is around 18.4 °C, electricity demand is at its lowest. This information could be useful for policymakers and electricity providers in developing strategies to manage electricity demand and reduce peak consumption.
+
+2. Impact of Temperature on Electricity Demand:
+
+Given that β₂ = 22256, it is possible to state that, on average, electricity demand increases by 22256 KW per month.
+This indicates that a one-degree increase in temperature is associated with an average increase of 22256 KW in electricity demand. This highlights the significant impact of temperature on electricity consumption patterns.
+
+3. Relative Responsiveness to Changes in Wages and Economic Activity:
+
+By analyzing the demand elasticities with respect to wages (η₄₃) and economic activity (η₅₃), it is possible to affirm that electricity demand responds more to changes in wages (recorded by the wage index) than to changes in economic activity (recorded by the EMAE) if |η₄₃| > |η₅₃|. This condition is met throughout the entire study period. This finding is consistent with the fact that in this market, most of the electricity demand comes from residential users.
+This suggests that changes in wages have a greater impact on electricity consumption patterns compared to changes in overall economic activity. This could be due to the fact that wage increases lead to higher disposable income, which may lead to increased consumption of electricity-intensive goods and services.
+
+4. Inelasticity of Price and Economic Activity:
+
+It can be observed that both the average seasonal price and economic activity are inelastic throughout the entire study period.
+This implies that changes in the average seasonal price or economic activity have a relatively small impact on electricity demand. This could be due to the fact that electricity is an essential commodity, and consumers are willing to pay a higher price for it, even if their income or overall economic activity decreases.
+
+Overall, the presented model provides valuable insights into the properties of electricity demand in the stabilized market. The findings have implications for policymakers, electricity providers, and consumers in terms of understanding and managing electricity consumption patterns.
+## Subsidies Estimator
