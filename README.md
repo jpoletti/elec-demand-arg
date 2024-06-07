@@ -87,4 +87,29 @@ It can be observed that both the average seasonal price and economic activity ar
 This implies that changes in the average seasonal price or economic activity have a relatively small impact on electricity demand. This could be due to the fact that electricity is an essential commodity, and consumers are willing to pay a higher price for it, even if their income or overall economic activity decreases.
 
 Overall, the presented model provides valuable insights into the properties of electricity demand in the stabilized market. The findings have implications for policymakers, electricity providers, and consumers in terms of understanding and managing electricity consumption patterns.
+
 ## Subsidies Estimator
+The subsidies required by electrical system can be modeled as:
+```math
+$$s_t = (p_m - p_e)q_t$$
+```
+So it's possible to get an estimator of the subsidies by replacing q_t with the demand model:
+```math
+$$\hat{s}_t = (p_m - p_e)\hat{q}_t = (p_m - p_e) \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t$$
+```
+### Validity of the Subsidies Estimator
+This model is internally valid for the same reasons as the demand estimator.
+To prove if the model is consistent with the data, a Wald test is performed with the following regression:
+$$\hat{s'}_t = \hat{\gamma}_0 + \hat{\gamma}_1 (p_m-p_e)\hat{q}_t$$
+With the null hypothesis $H_0: \gamma_0 = 0, \gamma_1 = 1$ and the alternative hypothesis $H_a = \gamma_0 \neq 0, \gamma_1 \neq 1$.
+If the parameters are fitted using OLS, the regression equation is:
+$$\hat{s'}_t = \hat{\gamma}_0 + \hat{\gamma}_1 (p_m-p_e)\hat{q}_t$$
+
+#### Standard Errors of the Subsidies Estimator
+To determine wether robust errors should be used it is necessary to evaluate if $\hat{s}_t$ is heteroscedastic and if it has serial correlation issues
+##### Heteroskedasticity
+In this case it's not necessary to perform any test to confirm that the estimator is heteroscedastic. This can be seen by looking at the definition of the regressor, including the error terms of the demand estimator ($u_t$) and of the subsidies estimator ($v_t$):
+$$s'_t = \hat{\gamma_0} + \hat{\gamma_1} (p_m-p_e)[\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + u_t] + v_t$$
+Thus, the error in $s'_t$ is equal to $(p_m-p_e)v_t + u_t$. Given that $\partial s'_t/\partial{(p_m-p_e) > 0}$, this means that the error increases as the predicted subsidies increase, which by definition means that the estimator is heteroscedastic, as shown in the following plot:
+##### Serial Correlation
+Again, to test this we use 
