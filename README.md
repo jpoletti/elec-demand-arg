@@ -106,12 +106,20 @@ If the parameters are fitted using OLS, the regression equation is:
 $$\hat{s'}_t = \hat{\gamma}_0 + \hat{\gamma}_1 (p_m-p_e)\hat{q}_t$$
 
 #### Standard Errors of the Subsidies Estimator
-To determine wether robust errors should be used it is necessary to evaluate if $\hat{s}_t$ is heteroscedastic and if it has serial correlation issues
+To determine wether robust errors should be used it is necessary to evaluate if $\hat{s}_t$ is heteroscedastic and if it has serial correlation issues.
+
 ##### Heteroskedasticity
 In this case it's not necessary to perform any test to confirm that the estimator is heteroscedastic. This can be seen by looking at the definition of the regressor, including the error terms of the demand estimator ($u_t$) and of the subsidies estimator ($v_t$):
 $$s'_t = \hat{\gamma_0} + \hat{\gamma_1} (p_m-p_e)[\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + u_t] + v_t$$
 Thus, the error in $s'_t$ is equal to $(p_m-p_e)v_t + u_t$. Given that $\partial s'_t/\partial{(p_m-p_e) > 0}$, this means that the error increases as the predicted subsidies increase, which by definition means that the estimator is heteroscedastic, as shown in the following plot:
+
 ##### Serial Correlation
 Again, to test this we use the Durbin-Watson test. The test statistic ($d$) was 1.797, which again rejects the alternative hypothesis that the regression residuals are correlated with a significance level of 0.05.
 
-###
+#### Results of the Validity Test
+Given that the results of the previous section, the hypothesis test was performed using HAC standard errors. In this case, the p-value was 0.199, which means that the null hypothesis can't be rejected and the subsidies estimator ($s_t = (p_m - p_e)q_t$) is valid. 
+
+### Prediction Results for the Subsidies Estimator
+Because the subsidies estimator is just the demand estimator multiplied by the difference in prices, the percentage errors are the same as in the demand model. 
+
+### Economic Properties of the Subsidies Model
