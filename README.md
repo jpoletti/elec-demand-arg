@@ -38,7 +38,7 @@ This section describes the different sources of data used for this project. All 
 In this model, the relationship between the electricity demand, measured in Kilowatts, and the independent variables is as following:
 
 $$
-\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1 t_{mp}^2 + \hat{\beta_2} t_{mp} + \hat{\beta}_3 ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t
+\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1 t_{mp}^2 + \hat{\beta}_2 t_{mp} + \hat{\beta}_3 ln(p_e) + \hat{\beta}_4 w + \hat{\beta}_5 a + \hat{\beta}_6 St + \hat{u}_t
 $$
 
 Where $\hat{q}_t$ is the electricity demand and $\hat{u}_t$ is the sample estimation error, both during the period $t$. Replacing the weights for their values (fitted using OLS) the equation is:
