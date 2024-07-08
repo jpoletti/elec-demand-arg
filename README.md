@@ -37,11 +37,15 @@ This section describes the different sources of data used for this project. All 
 
 In this model, the relationship between the electricity demand, measured in Kilowatts, and the independent variables is as following:
 
-$$\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t$$
+$$
+\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t
+$$
 
 Where $\hat{q}_t$ is the electricity demand and $\hat{u}_t$ is the sample estimation error, both during the period $t$. Replacing the weights for their values (fitted using OLS) the equation is:
 
-$$\hat{q}_{t} = 15274960 + 38758  \space t_{mp}^2 -1426205  \space t_{mp} -332004  \space ln(p_e) + 320936  \space w + 15812  \space a + 22256  \space t + \hat{u}_t$$
+$$
+\hat{q}_{t} = 15274960 + 38758  \space t_{mp}^2 -1426205  \space t_{mp} -332004  \space ln(p_e) + 320936  \space w + 15812  \space a + 22256  \space t + \hat{u}_t
+$$
 
 ### Model Validity
 
@@ -55,11 +59,17 @@ From the producer side the conditions to be met are that $\partial{p_e}/\partial
 
 Thus we have 3 conditions and all of them are met, because:
 
-$$\partial{p_e}/\partial{\hat{q}_{t}} = \frac{\hat{\beta}_3}{p_e} = \frac{-332004}{p_e} <0 ; \space p_e>0$$
+$$
+\partial{p_e}/\partial{\hat{q}_{t}} = \frac{\hat{\beta}_3}{p_e} = \frac{-332004}{p_e} <0 ; \space p_e>0
+$$
 
-$$\partial{w}/\partial{\hat{q}_{t}} = \hat{\beta}_4 = 320936 >0$$
+$$
+\partial{w}/\partial{\hat{q}_{t}} = \hat{\beta}_4 = 320936 >0\
+$$
 
-$$\partial{a}/\partial{\hat{q}_{t}} = \hat{\beta}_5 = 15812 > 0$$
+$$
+\partial{a}/\partial{\hat{q}_{t}} = \hat{\beta}_5 = 15812 > 0
+$$
 
 Therefore the model is theoretically valid.
 
@@ -102,6 +112,7 @@ It is also possible that in the future there will be structural changes in elect
 **Serial Correlation** To test for this aspect the Durbin-Watson test was used. In this case the d statistic was 1.923 which rejects the hypothesis that there are serial correlation problems with a significance level of 0.05.
 
 ![serial-corr-demand](https://raw.githubusercontent.com/jpoletti/elec-demand-arg/main/plots/serial-corr-demand.png)
+
 #### External Validity
 
 Given the regulatory differences between the different electricity markets in their respective countries, the existing differences in terms of the adoption of electrical appliances and climate control systems by consumers and the greater or lesser preponderance of industries with high electricity consumption, it is unlikely that the model presented in this article can be used in countries other than Argentina.
@@ -133,19 +144,25 @@ $$s_t = (p_m - p_e)q_t$$
 
 So it's possible to get an estimator of the subsidies by replacing $q_t$ with the demand model:
 
-$$\hat{s}_t = (p_m - p_e)\hat{q}_t = (p_m - p_e) \left(\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t\right)$$
+$$
+\hat{s}_t = (p_m - p_e)\hat{q}_t = (p_m - p_e) \left(\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t\right)
+$$
 
 ### Validity of the Subsidies Estimator
 
 This model is internally valid for the same reasons as the demand estimator. To prove if the model is consistent with the data, a Wald test is performed with the following regression:
 
-$$\hat{s'}_t = \hat{\gamma}_0 + \hat{\gamma}_1 (p_m-p_e)\hat{q}_t$$
+$$
+\hat{s'}_t = \hat{\gamma}_0 + \hat{\gamma}_1 (p_m-p_e)\hat{q}_t
+$$
 
-With the null hypothesis $H_0: \gamma_0 = 0, \gamma_1 = 1$ and the alternative hypothesis $H_a = \gamma_0  \neq  0, \gamma_1  \neq  1$.
+With the null hypothesis $H_0: \gamma_0 = 0, \gamma_1 = 1$ and the alternative hypothesis $H_a = \gamma_0 \neq 0, \gamma_1 \neq 1$.
 
 If the parameters are fitted using OLS, the regression equation is:
 
-$$\hat{s'}_t = 32810 + 0.9758 (p_m-p_e)\hat{q}_t$$
+$$
+\hat{s'}_t = 32810 + 0.9758 (p_m-p_e)\hat{q}_t
+$$
 
 #### Standard Errors of the Subsidies Estimator
 
@@ -153,7 +170,9 @@ To determine whether robust errors should be used it is necessary to evaluate if
 
 **Heteroskedasticity** In this case it's not necessary to perform any test to confirm that the estimator is heteroscedastic. This can be seen by looking at the definition of the regressor, including the error terms of the demand estimator ($\hat{u}_t$) and of the subsidies estimator ($\hat{v}_t$):
 
-$$s'_t = \hat{\gamma_0} + \hat{\gamma_1} (p_m-p_e)\left[\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t\right] + \hat{v}_t$$
+$$
+s'_t = \hat{\gamma_0} + \hat{\gamma_1} (p_m-p_e)\left[\hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t\right] + \hat{v}_t
+$$
 
 Thus, the error in $s'_t$ is equal to $(p_m-p_e)\hat{u}_t + \hat{v}_t$. Given that $\partial s'_t/\partial{(p_m-p_e) > 0}$, this means that the error increases as the predicted subsidies increase, which by definition means that the estimator is heteroscedastic, as shown in the following plot:
 
