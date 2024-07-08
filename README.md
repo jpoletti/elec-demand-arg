@@ -3,28 +3,35 @@ A simple linear estimator for the electricity demand of distributors in Argentin
 
 ## Description of the Problem
 
-The retail electricity market in Argentina is structured in three different segments: generation, transmission and distribution, where the last 2 stages are regulated as regional natural monopolies and the first one uses a merit order model, very similar to what is described [here](https://neon.energy/marginal-pricing). The entity that coordinates the market and the transactions between the different market segments and participants is a public-private enterprise called CAMMESA.
+The retail electricity market in Argentina is structured in three different segments: generation, transmission and distribution, where the last 2 stages are regulated as regional natural monopolies and the first one uses a merit order model, very similar to what is described [here](https://neon.energy/marginal-pricing). The entity that coordinates the market and the transactions between the different market segments and participants is a public-private enterprise called CAMMESA.   
 
-The prices that distributors have to pay for the power their users consume is determined by Secretaría de Energía, an entity of the federal government. Because the pricing structure is usually rather complex, CAMMESA calculates the average seasonal price, which is just the amount billed to the distributors divided by amount of power delivered. Another statistic calculated is the average monomic price, which is the average cost of power during a given period (usually a month).
+The prices that distributors have to pay for the power their users consume is determined by Secretaría de Energía, an entity of the federal government. Because the pricing structure is usually rather complex, CAMMESA calculates the average seasonal price, which is just the amount billed to the distributors divided by amount of power delivered. Another statistic calculated is the average monomic price, which is the average cost of power during a given period (usually a month).   
 
-Given Argentina's chronic inflation issues and the fact that the regulated prices are essentially determined by the ruling party, the price of electrical power paid by distributors has always been lower than the cost of generation and transmission, in order to keep consumer spending on utilities low. The difference is compensated by losses in the companies involved in the electrical system (with the worsening of service quality as a result), subsidies from the federal government or a combination of both.
+Given Argentina's chronic inflation issues and the fact that the regulated prices are essentially determined by the ruling party, the price of electrical power paid by distributors has always been lower than the cost of generation and transmission, in order to keep consumer spending on utilities low. The difference is compensated by losses in the companies involved in the electrical system (with the worsening of service quality as a result), subsidies from the federal government or a combination of both.   
 
-The subsidies have been a consistent problem for fiscal policy, requiring a significant effort from the federal government, reaching up to 1.9% of GDP in 2016. 
-Thus, the objective of this work is to create a quantitative model that helps to understand and quantify the cost to sustain the retail electricity market. The approach taken is to build a model that estimates electricity demand in this market and multiply that by the difference between cost and prices to get predictions about the needed subsidies.
+The subsidies have been a consistent problem for fiscal policy, requiring a significant effort from the federal government, reaching up to 1.9% of GDP in 2016.    
+
+Thus, the objective of this work is to create a quantitative model that helps to understand and quantify the cost to sustain the retail electricity market. The approach taken is to build a model that estimates electricity demand in this market and multiply that by the difference between cost and prices to get predictions about the needed subsidies.   
 
 ## Data Used
-This section describes the different sources of data used for this project. All of them have a monthly frequency and cover the period from January 2011 to December 2022.
-* Monthly temperature ($t_{mp}$): this variable was included given the fact that heating and air conditioning systems are one of the most important uses of electricity. Even tough electricity is used throughout the country, the source for the data is the [Dirección General de Estadística y Censos de la Ciudad de Buenos Aires](https://www.estadisticaciudad.gob.ar/eyc/?p=27702), a government entity from the city of Buenos Aires. This is because during the research for this project no summary statistic for temperature for the entire country was found and the Buenos Aires Metro Area is the most important region when it comes to electrical power consumption. The value used is an average between the minimum and maximum temperatures.
-* Average seasonal price ($p_e$): This is an inflation adjusted version of the price as published by [CAMMESA](https://cammesaweb.cammesa.com/informe-anual/). The inflation adjustment is done with [this inflation data](https://www.alphacast.io/datasets/inflation-argentina-long-term-cpi-data-monthly-29891) using January 2011 as the base period.
-* Wage index ($w$): this variable is used as a proxy for the income of the households. The source of the data is [INDEC](https://www.indec.gob.ar/indec/web/Nivel4-Tema-4-31-61) and it is inflation adjusted using the same data as the previous item.
-* EMAE ($a$): this is a monthly economic activity indicator produced by [INDEC](https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-9-48), and it's added to take into account the fact that electricity is a production input.
-* Time ($t$): this variable was added to take into consideration other trends in electricity consumption that are not included in the other variables, such as: increasing efficiency in home appliances, population increase, adoption of electro-intensive production processes, etc. This is a discrete variable so that in the first month of the sample (January-2011) $t=1$, in the second month $t=2$ and so on.
-* Average Monomic Price ($p_m$): the source of this variable is the same as in the case of the average seasonal price. It is also adjusted for inflation, using the same data as before.
+This section describes the different sources of data used for this project. All of them have a monthly frequency and cover the period from January 2011 to December 2022.   
+
+* Monthly temperature ($t_{mp}$): this variable was included given the fact that heating and air conditioning systems are one of the most important uses of electricity. Even tough electricity is used throughout the country, the source for the data is the [Dirección General de Estadística y Censos de la Ciudad de Buenos Aires](https://www.estadisticaciudad.gob.ar/eyc/?p=27702), a government entity from the city of Buenos Aires. This is because during the research for this project no summary statistic for temperature for the entire country was found and the Buenos Aires Metro Area is the most important region when it comes to electrical power consumption. The value used is an average between the minimum and maximum temperatures.   
+  
+* Average seasonal price ($p_e$): This is an inflation adjusted version of the price as published by [CAMMESA](https://cammesaweb.cammesa.com/informe-anual/). The inflation adjustment is done with [this inflation data](https://www.alphacast.io/datasets/inflation-argentina-long-term-cpi-data-monthly-29891) using January 2011 as the base period.   
+  
+* Wage index ($w$): this variable is used as a proxy for the income of the households. The source of the data is [INDEC](https://www.indec.gob.ar/indec/web/Nivel4-Tema-4-31-61) and it is inflation adjusted using the same data as the previous item.   
+  
+* EMAE ($a$): this is a monthly economic activity indicator produced by [INDEC](https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-9-48), and it's added to take into account the fact that electricity is a production input.   
+  
+* Time ($t$): this variable was added to take into consideration other trends in electricity consumption that are not included in the other variables, such as: increasing efficiency in home appliances, population increase, adoption of electro-intensive production processes, etc. This is a discrete variable so that in the first month of the sample (January-2011) $t=1$, in the second month $t=2$ and so on.   
+  
+* Average Monomic Price ($p_m$): the source of this variable is the same as in the case of the average seasonal price. It is also adjusted for inflation, using the same data as before.   
 
 ## Electricity Demand Estimation
 ### Regression Equation
 
-In this model, the relationship between the electricity demand, measured in Kilowatts, and the independent variables is as following:
+In this model, the relationship between the electricity demand, measured in Kilowatts, and the independent variables is as following:   
 
 $$\hat{q}_{t} = \hat{\beta}_0 + \hat{\beta}_1t_{mp}^2 + \hat{\beta_2}t_{mp} + \hat{\beta}_3ln(p_e) + \hat{\beta}_4w + \hat{\beta}_5a + \hat{\beta}_6t + \hat{u}_t$$
 
@@ -72,7 +79,7 @@ It is also possible that in the future there will be structural changes in elect
 
 **Heteroskedasticity** To test for heteroskedasticity the Breusch-Pagan test was performed. The p-value of the test was 0.6206, which with a significance level of 0.05 rejects the null hypothesis of the test and leads to the conclusion that the residuals of the model have constant variance.
 
-**Seral Correlation** To test for this aspect the Durbin-Watson test was used. In this case the d statistic was 1.923 which rejects the hypothesis that there are serial correlation problems with a significance level of 0.05.
+**Serial Correlation** To test for this aspect the Durbin-Watson test was used. In this case the d statistic was 1.923 which rejects the hypothesis that there are serial correlation problems with a significance level of 0.05.
 
 #### External Validity
 
@@ -80,12 +87,14 @@ Given the regulatory differences between the different electricity markets in th
 
 ### Model Results
 
-This regression has an R² = 0.8572 and the MAPE is 3.15%, where the largest underestimation is -10.70% and the largest overestimation is 12.04%.
+This regression has an $R^2$ = 0.8572 and the MAPE is 3.15%, where the largest underestimation is -10.70% and the largest overestimation is 12.04%.
 
 ### Economic Properties of the Electricity Demand
 
 Given that the presented model has been shown to meet the necessary conditions to be valid from a theoretical and econometric point of view, it is possible to infer some interesting properties of electricity demand in the stabilized market, including:
+
 * Optimal Temperature for Minimum Electricity Demand: it is possible to find the value of $t$ that minimizes electricity demand, which is approximately 18.4 °C.
+* 
 * Growth of Electricity Demand Over Time: given that $\beta_6$ = 22256, it is possible to state that, on average, electricity demand increases by 22256 KW per month.
 * Relative Responsiveness to Changes in Wages and Economic Activity: by analyzing the demand elasticity with respect to wages ($\eta_w^q$) and economic activity ($\eta_a^q$), it is possible to affirm that electricity demand responds more to changes in wages (recorded by the wage index) than to changes in economic activity (recorded by the EMAE) if $\eta_w^q >\eta_a^q$ . This condition is met throughout the entire study period. This finding is consistent with the fact that in this market, most of the electricity demand comes from residential users. It also implies that changes in wages have a greater impact on electricity consumption than changes in economic activity.
 * Inelasticity of Price and Economic Activity: it can be observed that both the average seasonal price and economic activity are inelastic throughout the entire study period. This implies that changes in the average seasonal price or economic activity have a relatively small impact on electricity demand.
